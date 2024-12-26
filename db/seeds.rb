@@ -6,3 +6,11 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+item = Item.create!(
+  name: 'プロテイン',
+  price: 500
+)
+
+item.image.attach(io: File.open(Rails.root.join('app/assets/images/dummy.jpg')),
+                  filename: 'dummy.jpg')
+                  
