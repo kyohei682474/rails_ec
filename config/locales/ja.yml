@@ -1,6 +1,14 @@
 ---
 ja:
+  rails_ec:
+
   activerecord:
+    models:
+      item: 商品
+    attributes:
+      item:
+        name: 名前
+        price: 値段 
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
