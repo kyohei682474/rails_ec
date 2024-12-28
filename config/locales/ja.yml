@@ -1,6 +1,14 @@
----
 ja:
-  rails_ec:
+  layouts:
+    application:
+      Home: ホーム
+      All_Products: "すべての商品"
+      Popular_Items: "人気商品"
+      New_Arrival: 新しい商品
+      Cart: 買い物カゴ
+      About: 概要
+      Shop: ショップ
+
 
   activerecord:
     models:
