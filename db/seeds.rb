@@ -14,3 +14,6 @@ item = Item.create!(
 item.image.attach(io: File.open(Rails.root.join('app/assets/images/dummy.jpg')),
                   filename: 'dummy.jpg')
                   
+# item.image.attach(io:URI.open("https://mybaket999.s3.ap-northeast-1.amazonaws.com/eixu75y4g40dh0nfz5gb58qwgc2h") )
+                  
+                  
