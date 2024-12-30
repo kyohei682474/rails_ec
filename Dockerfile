@@ -7,7 +7,7 @@ RUN ln -fs /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm \
   && ln -fs /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npx \
   && ln -fs /opt/yarn/bin/yarn /usr/local/bin/yarn \
   && ln -fs /opt/yarn/bin/yarnpkg /usr/local/bin/yarnpkg
-
+RUN apt-get update -qq && apt-get install -y --no-install-recommends libvips42
 RUN apt-get update -qq && \
   apt-get install -y build-essential \
   libpq-dev \
