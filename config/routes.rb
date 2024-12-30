@@ -2,7 +2,7 @@
 
 Rails.application.routes.draw do
   root 'items#index'
-  get 'items/show'
+  get 'items/:id' , to: 'items#show'
   resources :tasks
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
