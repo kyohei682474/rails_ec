@@ -10,7 +10,8 @@ ja:
       Shop: ショップ
   items:
     show:
-      Add_to_cart: 買い物かごに追加
+      Add_To_Cart: 買い物かごに追加
+      Related_Products: 関連商品
 
 
   activerecord:

@@ -13,7 +13,7 @@
                             <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
                             <button class="btn btn-outline-dark flex-shrink-0" type="button">
                                 <i class="bi-cart-fill me-1"></i>
-                                <%= t('layouts.application.Add_to_Cart')%>
+                                <%= t('items.show.Add_To_Cart')%>
                             </button>
                         </div>
                     </div>
@@ -23,9 +23,10 @@
         <!-- Related items section-->
         <section class="py-5 bg-light">
             <div class="container px-4 px-lg-5 mt-5">
-                <h2 class="fw-bolder mb-4">Related products</h2>
+                <h2 class="fw-bolder mb-4"><%= t('items.show.Related_Products')%></h2>
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     <div class="col mb-5">
+                        
                         <div class="card h-100">
                             <!-- Product image-->
                             <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />

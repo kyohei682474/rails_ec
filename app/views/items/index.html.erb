@@ -15,7 +15,13 @@
         <div class="col mb-5">
           <!-- Product image-->
           <div class="card h-100">
-            <%= image_tag(item.image) if item.image.present?%>
+            <% if item.image.present? %>
+                <% variant_image = item.image.variant(resize_to_fill: [450, 300]).processed %>
+                <%= link_to item do %>
+                  <%= image_tag variant_image, class: "card-img-top" %>
+                <% end %>
+            <% end %>
+            <%# <%= image_tag item.image.variant(resize_to_fill: [450, 300]) if item.image.present? %> 
             <!-- Product details-->
             <div class="card-body p-4">
               <div class="text-center">
