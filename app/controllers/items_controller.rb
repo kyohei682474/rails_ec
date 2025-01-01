@@ -5,7 +5,7 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    @items = Item.latest
+    @items = Item.latest.limit(3)
   
   end
 
