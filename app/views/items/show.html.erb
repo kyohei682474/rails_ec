@@ -3,12 +3,12 @@
                 <div class="row gx-4 gx-lg-5 align-items-center">
                     <div class="col-md-6"><%=image_tag @item.image.variant(resize_to_fill: [600, 700]) if @item.image.attached? %></div>
                     <div class="col-md-6"> 
-                        <div class="small mb-1">SKU: BST-498</div>
+                        <div class="small mb-1"></div>
                         <h1 class="display-5 fw-bolder"><%= @item.name %></h1>
                         <div class="fs-5 mb-5">
                             <span><%= @item.price %>円</span>
                         </div>
-                        <p class="lead"><%= @item.description %></p>
+                        <p class="lead"><%= simple_format(@item.description) %></p>
                         <div class="d-flex">
                             <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
                             <button class="btn btn-outline-dark flex-shrink-0" type="button">
@@ -42,7 +42,7 @@
                                     <!-- Product name-->
                                     <h5 class="fw-bolder"><%= item.name %></h5>
                                     <!-- Product price-->
-                                    <%= item.price %>
+                                    <%= item.price %>円
                                 </div>
                             </div>
                             <!-- Product actions-->
