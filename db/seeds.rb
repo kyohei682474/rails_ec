@@ -9,10 +9,27 @@
 #   Character.create(name: "Luke", movie: movies.first)
 item = Item.create!(
   name: 'プロテイン',
-  price: 500
+  price: 500,
+  description:'サンプルサンプル' 
 )
 
 item.image.attach(io: File.open(Rails.root.join('app/assets/images/dummy.jpg')),
                   filename: 'dummy.jpg')
 
-# item.image.attach(io:URI.open("https://mybaket999.s3.ap-northeast-1.amazonaws.com/eixu75y4g40dh0nfz5gb58qwgc2h") )
+item2 = Item.create!(
+    name: 'プロテインバーいちご',
+    price: 200,
+    description: 'サンプルサンプル2'
+  )
+
+item2.image.attach(io: File.open(Rails.root.join('app/assets/images/dummy.jpg')),
+                  filename: 'dummy.jpg')
+
+item3 = Item.create!(
+  name: 'プロテインバーチョコレート',
+  price: 500,
+  description: 'サンプルサンプル3'
+)
+
+item3.image.attach(io: File.open(Rails.root.join('app/assets/images/dummy.jpg')),
+                filename: 'dummy.jpg')
