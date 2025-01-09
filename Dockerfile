@@ -14,7 +14,11 @@ RUN apt-get update -qq && \
   postgresql-client \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
-
+RUN apt-get update && apt-get install -y \
+  build-essential \
+  libxml2-dev \
+  libxslt-dev
+RUN apt-get update -qq && apt-get install -y --no-install-recommends libvips42
 RUN mkdir /myapp
 WORKDIR /myapp
 
