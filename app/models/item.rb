@@ -3,5 +3,5 @@
 class Item < ApplicationRecord
   has_one_attached :image
 
-  scope :latest, -> {order(created_at: :desc)}
+  scope :latest, -> { order(created_at: :desc) }
 end

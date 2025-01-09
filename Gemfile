@@ -50,8 +50,8 @@ gem 'bootsnap', require: false
 gem 'nokogiri', '~> 1.18.0'
 # Use Sass to process CSS
 # gem "sassc-rails"s
-gem 'mini_magick', '~> 4.8'
 gem 'image_processing', '~> 1.2'
+gem 'mini_magick', '~> 4.8'
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
@@ -65,13 +65,13 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem 'htmlbeautifier'
+  gem 'pry-byebug'
   gem 'rails_best_practices'
   gem 'rubocop', require: false
   gem 'rubocop-hc', require: false, github: 'ihatov08/rubocop-hc'
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
   gem 'web-console'
-  gem 'pry-byebug'
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 

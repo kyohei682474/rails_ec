@@ -10,20 +10,20 @@
 item = Item.create!(
   name: 'プロテイン',
   price: 500,
-  description:'サンプルサンプル' 
+  description: 'サンプルサンプル'
 )
 
-item.image.attach(io: File.open(Rails.root.join('app/assets/images/dummy.jpg')),
+item.image.attach(io: Rails.root.join('app/assets/images/dummy.jpg').open,
                   filename: 'dummy.jpg')
 
 item2 = Item.create!(
-    name: 'プロテインバーいちご',
-    price: 200,
-    description: 'サンプルサンプル2'
-  )
+  name: 'プロテインバーいちご',
+  price: 200,
+  description: 'サンプルサンプル2'
+)
 
-item2.image.attach(io: File.open(Rails.root.join('app/assets/images/dummy.jpg')),
-                  filename: 'dummy.jpg')
+item2.image.attach(io: Rails.root.join('app/assets/images/dummy.jpg').open,
+                   filename: 'dummy.jpg')
 
 item3 = Item.create!(
   name: 'プロテインバーチョコレート',
@@ -31,5 +31,5 @@ item3 = Item.create!(
   description: 'サンプルサンプル3'
 )
 
-item3.image.attach(io: File.open(Rails.root.join('app/assets/images/dummy.jpg')),
-                filename: 'dummy.jpg')
+item3.image.attach(io: Rails.root.join('app/assets/images/dummy.jpg').open,
+                   filename: 'dummy.jpg')
