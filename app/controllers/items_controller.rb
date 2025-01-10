@@ -5,5 +5,14 @@ class ItemsController < ApplicationController
     @items = Item.with_attached_image
   end
 
-  def show; end
+  def show
+    @item = Item.find(params[:id])
+    @items = Item.where.not(id: @item.id).latest.limit(1)
+  end
+
+  private
+
+  def item_params
+    params.require(:item).permit(:name, :price, :description, :image)
+  end
 end

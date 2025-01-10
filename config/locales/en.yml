@@ -31,3 +31,7 @@
 
 en:
   hello: "Hello world"
+  tasks:
+    created: "Task was successfully created."
+    updated: "Task was successfully updated."
+    destroyed: "Task was successfully destroyed."

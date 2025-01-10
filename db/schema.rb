@@ -47,6 +47,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_01_05_020213) do
     t.integer "price", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "description", default: "", null: false
   end
 
   create_table "tasks", force: :cascade do |t|

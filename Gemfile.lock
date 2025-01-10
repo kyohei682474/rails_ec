@@ -97,6 +97,7 @@ GEM
     bootsnap (1.18.4)
       msgpack (~> 1.2)
     builder (3.3.0)
+    byebug (11.1.3)
     capybara (3.40.0)
       addressable
       matrix
@@ -108,6 +109,7 @@ GEM
       xpath (~> 3.2)
     code_analyzer (0.5.5)
       sexp_processor
+    coderay (1.1.3)
     concurrent-ruby (1.3.4)
     crass (1.0.6)
     cssbundling-rails (1.4.1)
@@ -124,11 +126,16 @@ GEM
     factory_bot_rails (6.4.4)
       factory_bot (~> 6.5)
       railties (>= 5.0.0)
+    ffi (1.17.1-x86_64-darwin)
+    ffi (1.17.1-x86_64-linux-gnu)
     globalid (1.2.1)
       activesupport (>= 6.1)
     htmlbeautifier (1.4.3)
     i18n (1.14.6)
       concurrent-ruby (~> 1.0)
+    image_processing (1.13.0)
+      mini_magick (>= 4.9.5, < 5)
+      ruby-vips (>= 2.0.17, < 3)
     io-console (0.8.0)
     irb (1.14.3)
       rdoc (>= 4.0.0)
@@ -141,6 +148,7 @@ GEM
       railties (>= 6.0.0)
     json (2.9.1)
     language_server-protocol (3.17.0.3)
+    logger (1.6.4)
     loofah (2.24.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -152,6 +160,7 @@ GEM
     marcel (1.0.4)
     matrix (0.4.2)
     method_source (1.1.0)
+    mini_magick (4.13.2)
     mini_mime (1.1.5)
     minitest (5.25.4)
     msgpack (1.7.5)
@@ -165,27 +174,21 @@ GEM
     net-smtp (0.5.0)
       net-protocol
     nio4r (2.7.4)
-    nokogiri (1.18.1-aarch64-linux-gnu)
-      racc (~> 1.4)
-    nokogiri (1.18.1-aarch64-linux-musl)
-      racc (~> 1.4)
-    nokogiri (1.18.1-arm-linux-gnu)
-      racc (~> 1.4)
-    nokogiri (1.18.1-arm-linux-musl)
-      racc (~> 1.4)
-    nokogiri (1.18.1-arm64-darwin)
-      racc (~> 1.4)
     nokogiri (1.18.1-x86_64-darwin)
       racc (~> 1.4)
     nokogiri (1.18.1-x86_64-linux-gnu)
-      racc (~> 1.4)
-    nokogiri (1.18.1-x86_64-linux-musl)
       racc (~> 1.4)
     parallel (1.26.3)
     parser (3.3.6.0)
       ast (~> 2.4.1)
       racc
     pg (1.5.9)
+    pry (0.14.2)
+      coderay (~> 1.1)
+      method_source (~> 1.0)
+    pry-byebug (3.10.1)
+      byebug (~> 11.0)
+      pry (>= 0.13, < 0.15)
     psych (5.2.2)
       date
       stringio
@@ -278,7 +281,10 @@ GEM
     rubocop-rspec (3.3.0)
       rubocop (~> 1.61)
     ruby-progressbar (1.13.0)
-    rubyzip (2.4.1)
+    ruby-vips (2.2.2)
+      ffi (~> 1.12)
+      logger
+    rubyzip (2.3.2)
     selenium-webdriver (4.10.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
@@ -323,14 +329,9 @@ GEM
     zeitwerk (2.7.1)
 
 PLATFORMS
-  aarch64-linux-gnu
-  aarch64-linux-musl
-  arm-linux-gnu
-  arm-linux-musl
-  arm64-darwin
-  x86_64-darwin
+  x86_64-darwin-22
+  x86_64-linux
   x86_64-linux-gnu
-  x86_64-linux-musl
 
 DEPENDENCIES
   aws-sdk-s3
@@ -340,10 +341,13 @@ DEPENDENCIES
   debug
   factory_bot_rails
   htmlbeautifier
+  image_processing (~> 1.2)
   jbuilder
   jsbundling-rails
+  mini_magick (~> 4.8)
   nokogiri (~> 1.18.0)
   pg (~> 1.1)
+  pry-byebug
   puma (~> 5.0)
   rails (~> 7.0.0)
   rails_best_practices
@@ -355,6 +359,7 @@ DEPENDENCIES
   selenium-webdriver
   sprockets-rails
   stimulus-rails
+  stringio (~> 3.1.2)
   turbo-rails
   tzinfo-data
   web-console
