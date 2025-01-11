@@ -6,8 +6,10 @@ Rails.application.routes.draw do
   resources :tasks
 
   namespace :admin do
-    resources :items
+    resources :items, only: [:index, :create, :show, :destory, :update]
   end
+
+  
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
