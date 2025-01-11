@@ -1,0 +1,29 @@
+<div class="d-flex align-items-center">
+  <h1>商品新規作成</h1>
+  <div class="ml-auto boards__linkBox">
+    <a href="/boards" class="btn btn-outline-dark">掲示板一覧</a>
+  </div>
+</div>
+<%= form_with @item do |f| %>
+  <div class="form-group">
+    <%= f.label :name, '商品名'%>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+
+
+<% end %>
+<form>
+  <div class="form-group">
+    <label for="name">名前</label>
+    <input id="name" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="title">タイトル</label>
+    <input id="title" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="body">本文</label>
+    <textarea id="body" class="form-control" rows="10"></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">保存</button>
+</form>
