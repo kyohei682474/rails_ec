@@ -1,29 +1,43 @@
-<div class="d-flex align-items-center">
-  <h1>商品新規作成</h1>
-  <div class="ml-auto boards__linkBox">
-    <a href="/boards" class="btn btn-outline-dark">掲示板一覧</a>
+<div class="container mt-4">
+  <div class="row mb-4 align-items-center">
+    <div class="col-md-6 offset-md-3 d-flex justify-content-between">
+      <h3 class="mb-0">商品登録フォーム</h3>
+      <%= link_to '商品一覧', admin_items_path, class: 'btn btn-outline-dark' %> 
+    </div>
   </div>
+  <%= form_with(model: @item, url: admin_items_path, local: true, class: "needs-validation") do |f| %>
+    <div class="row mb-3">
+      <div class="col-md-6 offset-md-3">
+        <div class="form-group">
+          <%= f.label :name, '商品名', class: "form-label" %>
+          <%= f.text_field :name, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-6 offset-md-3">
+        <div class="form-group">
+          <%= f.label :price, '価格', class: "form-label" %>
+          <%= f.number_field :price, class: 'form-control'%>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-6 offset-md-3">
+        <div class="form-group">
+          <%= f.label :description, '商品説明', class: "form-label" %>
+          <%= f.text_area :description, class: 'form-control', rows: 10, placeholder: "商品の詳細を入力してください" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 offset-md-3 text-center">
+        <%= f.submit '保存', class: 'btn btn-primary btn-lg' %>
+      </div>
+    </div>
+  <% end %>
 </div>
-<%= form_with @item do |f| %>
-  <div class="form-group">
-    <%= f.label :name, '商品名'%>
-    <%= f.text_field :name, class: 'form-control' %>
-  </div>
 
-
-<% end %>
-<form>
-  <div class="form-group">
-    <label for="name">名前</label>
-    <input id="name" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="title">タイトル</label>
-    <input id="title" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="body">本文</label>
-    <textarea id="body" class="form-control" rows="10"></textarea>
-  </div>
-  <button type="submit" class="btn btn-primary">保存</button>
-</form>
