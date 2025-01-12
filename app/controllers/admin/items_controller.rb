@@ -13,8 +13,8 @@ module Admin
     def create
       @item = Item.new(item_params)   
       
-      if @user.save
-        redirect_to admin_items, notice: "#{@item.name}を登録しました"
+      if @item.save
+        redirect_to admin_items_url, notice: "#{@item.name}を登録しました"
       else
         render :new
       end
@@ -25,11 +25,9 @@ module Admin
     end
 
     def update
-      if @item.update(item_params)
-        redirect_to admin_items_path, notice: "#{@item}を更新しました"
-      else
-        render :new
-      end
+      item = Item.find(params[:id])
+      item.update!(item_params)
+      redirect_to admin_items_url, notice: '#{item.name}を更新しました'
     end
 
     def destory

@@ -14,6 +14,7 @@ ja:
       Related_Products: 関連商品
 
 
+
   activerecord:
     models:
       item: 商品
