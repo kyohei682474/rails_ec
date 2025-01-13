@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :tasks
 
   namespace :admin do
-    resources :items, only: [:index, :create, :show, :destory, :update, :new, :edit]
+    resources :items, only: [:index, :create, :show, :destroy, :update, :new, :edit]
   end
 
 

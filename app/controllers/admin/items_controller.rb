@@ -3,7 +3,7 @@
 module Admin
   class ItemsController < ApplicationController
     def index
-      @items = Item.all
+      @items = Item.all.order(created_at: :asc)
     end
 
     def new
@@ -27,11 +27,13 @@ module Admin
     def update
       item = Item.find(params[:id])
       item.update!(item_params)
-      redirect_to admin_items_url, notice: '#{item.name}を更新しました'
+      redirect_to admin_items_url, notice: "#{item.name}を更新しました"
     end
 
-    def destory
-      
+    def destroy
+      item = Item.find(params[:id])
+      item.destroy
+      redirect_to admin_items_url, notice: "#{item.name}を削除しました"
     end
 
     private
