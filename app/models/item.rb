@@ -3,5 +3,7 @@
 class Item < ApplicationRecord
   has_one_attached :image
 
-  scope :latest, -> { order(created_at: :desc) }
+  validates :name, :price, :description, presence: true
+   
+  scope :oldest, -> { order(created_at: :asc) }
 end

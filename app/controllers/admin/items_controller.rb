@@ -5,19 +5,19 @@ module Admin
     before_action :set_target_item, only: %i[edit update destroy]
 
     def index
-      @items = Item.all.order(created_at: :asc)
+      @items = Item.all.oldest
     end
 
     def new
-      @item = Item.new      
+      @item = Item.new 
     end
 
     def create
       @item = Item.new(item_params)   
-      
       if @item.save
         redirect_to admin_items_url, notice: "#{@item.name}を登録しました"
       else
+        flash.now[:error_messages] = @item.errors.full_messages 
         render :new
       end
     end

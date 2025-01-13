@@ -1,3 +1,13 @@
+  <% if flash[:error_messages] %>
+    <div class="alert alert-danger">
+      <ul>
+        <% flash[:error_messages].each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
   <%= form_with(model: item, url: url, method: method, local: true, class: "needs-validation") do |f| %>
     <div class="row mb-3">
       <div class="col-md-6 offset-md-3">
