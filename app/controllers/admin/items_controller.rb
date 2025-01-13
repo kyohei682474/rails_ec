@@ -18,7 +18,7 @@ module Admin
         redirect_to admin_items_url, notice: "#{@item.name}を登録しました"
       else
         flash.now[:error_messages] = @item.errors.full_messages 
-        render :new
+        render :new, status: :unprocessable_entity
       end
     end
 
