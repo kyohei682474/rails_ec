@@ -2,6 +2,8 @@
 
 module Admin
   class ItemsController < ApplicationController
+    before_action :set_target_item, only: %i[edit update destroy]
+
     def index
       @items = Item.all.order(created_at: :asc)
     end
@@ -21,19 +23,16 @@ module Admin
     end
 
     def edit
-      @item = Item.find(params[:id])
     end
 
-    def update
-      item = Item.find(params[:id])
-      item.update!(item_params)
-      redirect_to admin_items_url, notice: "#{item.name}を更新しました"
+    def update     
+      @item.update!(item_params)
+      redirect_to admin_items_url, notice: "#{@item.name}を更新しました"
     end
 
-    def destroy
-      item = Item.find(params[:id])
-      item.destroy
-      redirect_to admin_items_url, notice: "#{item.name}を削除しました"
+    def destroy 
+      @item.destroy
+      redirect_to admin_items_url, notice: "#{@item.name}を削除しました"
     end
 
     private
@@ -41,5 +40,10 @@ module Admin
     def item_params
       params.require(:item).permit(:name, :price, :description, :image)
     end
+
+    def set_target_item
+      @item = Item.find(params[:id])
+    end
+
   end
 end
