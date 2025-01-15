@@ -3,7 +3,7 @@
 module Admin
   class ItemsController < ApplicationController
     before_action :set_target_item, only: %i[edit update destroy]
-    before_action :basic_auth_admin, only: %i[index new]
+    before_action :basic_auth_admin
     
     def index
       @items = Item.all.oldest
@@ -51,7 +51,7 @@ module Admin
      if username == ENV["BASIC_AUTH_USERNAME"] && password == ENV["BASIC_AUTH_PASSWORD"]
         true
      else
-      render plain: "認証に失敗しました。正しい認証情報を入力してください。", status: :unauthorized
+        render plain: "認証に失敗しました。正しい認証情報を入力してください。", status: :unauthorized
      end
      end
     end
