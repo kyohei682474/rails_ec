@@ -7,7 +7,7 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    @items = Item.where.not(id: @item.id).latest.limit(1)
+    @items = Item.where.not(id: @item.id).last(1)
   end
 
   private

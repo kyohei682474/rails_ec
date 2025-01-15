@@ -1,7 +1,6 @@
 <<div class="container mt-5">
   <h1>商品一覧</h1>
   <%= link_to '新規商品作成', new_admin_item_path, class: 'btn btn-primary mb-4' %>
-  
   <table class="table table-bordered table-hover">
     <thead class="table-light">
       <tr>
@@ -16,7 +15,6 @@
       <% @items.each do |item| %>
         <tr>
           <td><%= item.id %></td>
-          
           <!-- 商品画像 -->
           <td class="text-center">
             <% if item.image.attached? %>
@@ -25,7 +23,6 @@
               <span class="text-muted">画像なし</span>
             <% end %>
           </td>
-          
           <td><%= item.name %></td>
           <td><%= number_to_currency(item.price, unit: "円", precision: 0) %></td>
           <td>

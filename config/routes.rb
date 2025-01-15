@@ -6,9 +6,8 @@ Rails.application.routes.draw do
   resources :tasks
 
   namespace :admin do
-    resources :items, only: [:index, :create, :show, :destroy, :update, :new, :edit]
+    resources :items, only: %i[index create show destroy update new edit]
   end
-
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
