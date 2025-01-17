@@ -6,7 +6,7 @@ module Admin
     before_action :set_target_item, only: %i[edit update destroy]
 
     def index
-      @items = Item.all.oldest
+      @items = Item.with_attached_image.oldest
     end
 
     def new
