@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 module Admin
-  class ItemsController < ApplicationController
-    before_action :set_target_item, only: %i[edit update destroy]
+  class ItemsController < ApplicationController  
     before_action :basic_auth_admin
+    before_action :set_target_item, only: %i[edit update destroy]
 
     def index
       @items = Item.all.oldest
@@ -26,8 +26,12 @@ module Admin
     end
 
     def update
-      @item.update!(item_params)
-      redirect_to admin_items_url, notice: "#{@item.name}を更新しました"
+      if @item.update(item_params)
+        redirect_to admin_items_url, notice: "#{@item.name}を更新しました"
+      else 
+        flash.now[:error_messages] = @items.errors.full_messages
+        render :edit , status: :unprocessable_entity
+      end
     end
 
     def destroy
