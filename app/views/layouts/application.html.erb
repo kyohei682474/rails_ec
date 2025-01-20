@@ -38,6 +38,11 @@
           </div>
         </div>
       </nav>
+      <div class= "container">
+        <% if flash.notice.present? %>
+          <div class="alert alert-primary" ><%= flash[:notice] %></div>
+        <% end %>
+      </div>
       <%= yield %>
       <footer class="py-5 bg-dark">
         <div class="container">

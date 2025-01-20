@@ -14,13 +14,15 @@ ja:
       Related_Products: 関連商品
 
 
+
   activerecord:
     models:
       item: 商品
     attributes:
       item:
         name: 名前
-        price: 値段 
+        price: 値段
+        description: 商品説明 
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
