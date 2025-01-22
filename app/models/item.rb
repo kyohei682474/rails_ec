@@ -2,7 +2,8 @@
 
 class Item < ApplicationRecord
   has_one_attached :image
-  has_many :cart_item
+  has_many :cart_item, dependent: :destroy
+
 
   validates :name, :price, :description, presence: true
 
