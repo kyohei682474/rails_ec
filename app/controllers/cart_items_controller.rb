@@ -1,5 +1,5 @@
 class CartItemsController < ApplicationController
-before_action :set_cart, only: %i[increase decrease destroy]
+before_action :set_cart, only: %i[increase decrease destroy create]
 
   def index 
     @cart_items = current_cart.cart_items
@@ -12,11 +12,18 @@ before_action :set_cart, only: %i[increase decrease destroy]
 
   def increase
     cart_item.increment!(:quantity, 1)
+    redierct_to cart_item_path, notice:'カートが更新されました'
   end
+
 
   def decrease
     decrese_or_destroy
-    redierct_to cart_items_path, notice:'商品が削除されました'
+    redierct_to cart_items_path, notice:'カートが更新されました'
+  end
+
+  def destroy
+    @cart_item.destroy
+    redierct_to cart_items_path, notice:'カートが削除されました'
   end
 
   private
@@ -26,7 +33,7 @@ before_action :set_cart, only: %i[increase decrease destroy]
   end
 
   def increase_or_create(item_id)
-    cart_item = current_cart.cart_items.find_by(item_id) 
+    cart_item = current_cart.cart_items.find_by(item_id: item_id) 
      if cart_item
       cart_item.increment!(:quantity, 1)
      else
@@ -36,6 +43,7 @@ before_action :set_cart, only: %i[increase decrease destroy]
 
   def decrease_or_destroy(cart_item)
     if cart_item.quantity > 1
+      cart_item.quantity -= 
       cart_item.decrement!(:quantity, 1)
     else
       cart_item.destroy
