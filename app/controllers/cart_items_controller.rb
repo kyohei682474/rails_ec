@@ -29,7 +29,7 @@ before_action :set_cart, only: %i[increase decrease destroy create]
   private
 
   def set_cart
-    @cart_item = current_cart.cart_item.find(params[:id])
+    @cart_item = current_cart.cart_items.find(params[:id])
   end
 
   def increase_or_create(item_id)
