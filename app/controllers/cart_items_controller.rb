@@ -11,19 +11,19 @@ before_action :set_cart, only: %i[increase decrease destroy]
   end
 
   def increase
-    @cart_item.increment!(:quantity, 1)
-    redierct_to cart_item_path, notice:'カートが更新されました'
+    @cart_item.increment!(:quantity, quantity)
+    redirect_to cart_item_path, notice:'カートが更新されました'
   end
 
 
   def decrease
     decrease_or_destroy
-    redierct_to cart_items_path, notice:'カートが更新されました'
+    redirect_to cart_items_path, notice:'カートが更新されました'
   end
 
   def destroy
     @cart_item.destroy
-    redierct_to cart_items_path, notice:'カートが削除されました'
+    redirect_to cart_items_path, notice:'カートが削除されました'
   end
 
   private

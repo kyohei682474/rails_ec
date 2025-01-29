@@ -10,11 +10,11 @@
         </div>
         <p class="lead"><%= simple_format(@item.description) %></p>
         <div class="d-flex">
-          <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
-          <button class="btn btn-outline-dark flex-shrink-0" type="button">
+          <%= form_with url: increase_cart_item_path(item_id: @item.id),  method: :patch do |f| %>
+            <%= f.number_field :quantity, in: 1..20 %>
             <i class="bi-cart-fill me-1"></i>
-            <%= t('items.show.Add_To_Cart')%>
-          </button>
+            <%= f.submit "Add to Cart", class: "btn btn-outline-dark flex-shrink-0" %>
+          <% end %>
         </div>
       </div>
     </div>
