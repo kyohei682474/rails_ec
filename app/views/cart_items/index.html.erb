@@ -169,28 +169,18 @@
         </h4>
         <ul class="list-group mb-3">
           <% @cart_items.each do |cart_item|  %>
-          <li class="list-group-item d-flex justify-content-between lh-sm">
-            <div>
-              <h6 class="my-0"><%= cart_item.item.name %></h6>
-              <small class="text-body-secondary"><%= cart_item.item.description %></small>
-            </div>
-            <span class="text-body-secondary"><%= cart_item.item.price %></span>
-          </li>
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+              <div>
+                <h6 class="my-0"><%= cart_item.item.name %></h6>
+                <small class="text-body-secondary"><%= cart_item.item.description %></small>
+                <p class="mb-0">数量: <strong><%= cart_item.quantity %></strong></p>
+                <div class="d-flex align-items-center">
+                  <%= button_to "削除", cart_item_path(cart_item), method: :delete, class: "btn btn-danger btn-sm ms-2" %>
+                </div>
+              </div>
+              <span class="text-body-secondary"><%= cart_item.item.price %></span>
+            </li>
           <% end %>
-          <li class="list-group-item d-flex justify-content-between lh-sm">
-            <div>
-              <h6 class="my-0">Second product</h6>
-              <small class="text-body-secondary">Brief description</small>
-            </div>
-            <span class="text-body-secondary">$8</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between lh-sm">
-            <div>
-              <h6 class="my-0">Third item</h6>
-              <small class="text-body-secondary">Brief description</small>
-            </div>
-            <span class="text-body-secondary">$5</span>
-          </li>
           <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
             <div class="text-success">
               <h6 class="my-0">Promo code</h6>
