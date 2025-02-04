@@ -1,8 +1,10 @@
 class CartItemsController < ApplicationController
 before_action :set_cart, only: %i[increase decrease destroy]
 
-  def index 
-  #   @cart_items = current_cart.cart_items.include(:item_id)
+  def index
+    #カート内アイテムを全て表示する 
+    @cart_items = current_cart.cart_items.includes(:item)
+
   end
 
   def create
@@ -11,8 +13,7 @@ before_action :set_cart, only: %i[increase decrease destroy]
   end
 
   def increase
-     if @cart_item == nil
-      Rails.logger.debug "Params: #{params.inspect}" 
+     if @cart_item == nil 
       @cart_item = current_cart.cart_items.build(item_id: params[:item_id]).save
       @cart_item.increment!(:quantity, params.permit(:quantity)[:quantity].to_i)
       redirect_to item_path, notice:'カートが更新されました'
