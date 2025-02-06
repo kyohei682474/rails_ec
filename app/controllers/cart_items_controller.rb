@@ -1,5 +1,5 @@
 class CartItemsController < ApplicationController
-before_action :set_cart, only: %i[increase decrease destroy]
+before_action :set_cart_item, only: %i[increase decrease destroy]
 
   def index
     #カート内アイテムを全て表示する 
@@ -25,12 +25,6 @@ before_action :set_cart, only: %i[increase decrease destroy]
      end
   end
 
-
-  def decrease
-    decrease_or_destroys
-    redirect_to cart_items_path, notice:'カートが更新されました'
-  end
-
   def destroy
     @cart_item.destroy
     redirect_to cart_items_path, notice:'カートが削除されました'
@@ -38,9 +32,8 @@ before_action :set_cart, only: %i[increase decrease destroy]
 
   private
 
-  def set_cart 
-    #カートの中に商品が入っている場合にセットしておく
-      # @cart_item = current_cart.cart_items.find_by(item_id: params.permit(:item_id)[:item_id])
+  def set_cart_item 
+    #current_cartに関連するcart_itemの情報を取り出す
       @cart_item = current_cart.cart_items.find_by(id: params[:id]) || current_cart.cart_items.find_by(item_id: params[:item_id])
   end
 
@@ -54,14 +47,6 @@ before_action :set_cart, only: %i[increase decrease destroy]
       #初めてカートに商品を入れた時
       current_cart.cart_items.build(item_id: item_id).save 
      end
-  end
-
-  def decrease_or_destroy(cart_item)
-    if cart_item.quantity > 1
-      cart_item.decrement!(:quantity, 1)
-    else
-      cart_item.destroy
-    end
   end
 
 end
