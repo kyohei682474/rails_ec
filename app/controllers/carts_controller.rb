@@ -1,3 +1,4 @@
-class CartsController < ApplicationController
+# frozen_string_literal: true
 
+class CartsController < ApplicationController
 end

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :items, only: %i[show]
   resources :tasks
   resources :cart_items, only: %i[index create destroy]
-  
+
   patch '/cart_items/increase', to: 'cart_items#increase', as: 'increase_cart_item'
   patch '/cart_items/decrease', to: 'cart_items#decrease', as: 'decrease_cart_item'
 

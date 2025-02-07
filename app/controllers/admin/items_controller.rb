@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Admin
-  class ItemsController < ApplicationController  
+  class ItemsController < ApplicationController
     before_action :basic_auth_admin
     before_action :set_target_item, only: %i[edit update destroy]
 
@@ -28,9 +28,9 @@ module Admin
     def update
       if @item.update(item_params)
         redirect_to admin_items_url, notice: "#{@item.name}を更新しました"
-      else 
+      else
         flash.now[:error_messages] = @items.errors.full_messages
-        render :edit , status: :unprocessable_entity
+        render :edit, status: :unprocessable_entity
       end
     end
 
