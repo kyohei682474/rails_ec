@@ -1,18 +1,13 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
-  helper_method :current_cart
+  helper_method :set_cart
 
-  # セッションIDに登録されているcart_idが確認できるか
-  # できなければ、新たにカートオブジェクトを作成し、そのidをsession[:cart_id]に入れておく
-  def current_cart
-    @current_cart ||= Cart.find_by(id: session[:cart_id]) || create_cart
+  private
+
+  def set_cart
+    set_cart ||= Cart.find_by(id: session[:cart_id]) || Cart.create
+    session[:cart_id] ||= set_cart.id
+    set_cart
   end
-
-  private 
-    def create_cart
-      cart = Cart.create
-      session[:cart_id] = cart.id
-      cart
-    end
 end
