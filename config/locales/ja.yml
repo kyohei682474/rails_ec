@@ -13,10 +13,13 @@ ja:
       Add_To_Cart: 買い物かごに追加
       Related_Products: 関連商品
   cart_items:
+    index:
+      continue_to_checkout: "購入する"
     added: "商品が追加されました"
     updated: "カートが更新されました"
     deleted: "カートが削除されました"
     update_failed: "カートの更新に失敗しました"
+      
 
 
   activerecord:

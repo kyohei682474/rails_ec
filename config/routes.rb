@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'orders/new'
+  get 'orders/create'
   root 'items#index'
   resources :items, only: %i[show]
   resources :tasks
