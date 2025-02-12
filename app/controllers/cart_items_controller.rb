@@ -6,6 +6,8 @@ class CartItemsController < ApplicationController
   def index
     # カート内アイテムを全て表示する
     @cart_items = set_cart.cart_items.includes(:item)
+    # 住所やクレジット情報を記入するための@order
+    @order = Order.new
   end
 
   def create

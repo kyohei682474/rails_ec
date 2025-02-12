@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get 'orders/new'
-  get 'orders/create'
   root 'items#index'
   resources :items, only: %i[show]
   resources :tasks
   resources :cart_items, only: %i[index create destroy]
+  resources :orders, only: %i[new create]
 
   patch '/cart_items/increase', to: 'cart_items#increase', as: 'increase_cart_item'
 
