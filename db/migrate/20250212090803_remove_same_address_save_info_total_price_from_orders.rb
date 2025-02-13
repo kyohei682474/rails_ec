@@ -2,8 +2,9 @@
 
 class RemoveSameAddressSaveInfoTotalPriceFromOrders < ActiveRecord::Migration[7.0]
   def change
-    remove_column :orders, :same_address, :boolean
-    remove_column :orders, :save_info, :boolean
-    remove_column :orders, :total_price, :integer
+    change_table :orders, bulk: true do |t|
+      t.boolean :same_address, default: false, null: false
+      t.boolean :save_info, default: false, null: false
+    end
   end
 end

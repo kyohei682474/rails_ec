@@ -1,22 +1,15 @@
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
   <head><script src="../assets/js/color-modes.js"></script>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.122.0">
     <title>Checkout example · Bootstrap v5.3</title>
-
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/checkout/">
-
-    
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
-
-<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -95,8 +88,6 @@
         display: block !important;
       }
     </style>
-
-    
     <!-- Custom styles for this template -->
     <link href="checkout.css" rel="stylesheet">
   </head>
@@ -116,7 +107,6 @@
         <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
       </symbol>
     </svg>
-
     <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
       <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center"
               id="bd-theme"
@@ -151,215 +141,189 @@
         </li>
       </ul>
     </div>
-
-    
-<div class="container ">
-  <div class="row">
-   <div class="col-md-10 offset-md-1"> 
-  <main>
-    <div class="py-5 text-center">
-      <img class="d-block mx-auto mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-      <h2>Checkout form</h2>
-      <p class="lead">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
-    </div>
-
-    <div class="row g-5">
-      <div class="col-md-5 col-lg-4 order-md-last">
-        <h4 class="d-flex justify-content-between align-items-center mb-3">
-          <span class="text-primary">Your cart</span>
-          <span class="badge bg-primary rounded-pill"></span>
-        </h4>
-        <ul class="list-group mb-3">
-          <% @cart_items.each do |cart_item|  %>
-            <li class="list-group-item d-flex justify-content-between lh-sm">
-              <div>
-                <h6 class="my-0"><%= cart_item.item.name %></h6>
-                <small class="text-body-secondary"><%= cart_item.item.description %></small>
-                <p class="mb-0">数量: <strong><%= cart_item.quantity %></strong></p>
-                <div class="d-flex align-items-center">
-                  <%= button_to "削除", cart_item_path(cart_item), method: :delete, class: "btn btn-danger btn-sm ms-2" %>
-                </div>
+    <div class="container ">
+      <div class="row">
+        <div class="col-md-10 offset-md-1">
+          <main>
+            <div class="py-5 text-center">
+              <img class="d-block mx-auto mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+              <h2>Checkout form</h2>
+              <p class="lead">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+            </div>
+            <div class="row g-5">
+              <div class="col-md-5 col-lg-4 order-md-last">
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                  <span class="text-primary">Your cart</span>
+                  <span class="badge bg-primary rounded-pill"></span>
+                </h4>
+                <ul class="list-group mb-3">
+                  <% @cart_items.each do |cart_item|  %>
+                    <li class="list-group-item d-flex justify-content-between lh-sm">
+                      <div>
+                        <h6 class="my-0"><%= cart_item.item.name %></h6>
+                        <small class="text-body-secondary"><%= cart_item.item.description %></small>
+                        <p class="mb-0">数量: <strong><%= cart_item.quantity %></strong></p>
+                        <div class="d-flex align-items-center">
+                          <%= button_to "削除", cart_item_path(cart_item), method: :delete, class: "btn btn-danger btn-sm ms-2" %>
+                        </div>
+                      </div>
+                      <span class="text-body-secondary"><%= cart_item.item.price %>円</span>
+                    </li>
+                  <% end %>
+                  <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
+                    <div class="text-success">
+                      <h6 class="my-0">Promo code</h6>
+                      <small>EXAMPLECODE</small>
+                    </div>
+                    <span class="text-success">−$5</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between">
+                    <span>Total (円)</span>
+                    <strong>sum</strong>
+                  </li>
+                </ul>
+                <form class="card p-2">
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Promo code">
+                    <button type="submit" class="btn btn-secondary">Redeem</button>
+                  </div>
+                </form>
               </div>
-              <span class="text-body-secondary"><%= cart_item.item.price %>円</span>
-            </li>
-          <% end %>
-          <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
-            <div class="text-success">
-              <h6 class="my-0">Promo code</h6>
-              <small>EXAMPLECODE</small>
-            </div>
-            <span class="text-success">−$5</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between">
-            <span>Total (円)</span>
-            <strong>sum</strong>
-          
-          </li>
-        </ul>
-
-        <form class="card p-2">
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Promo code">
-            <button type="submit" class="btn btn-secondary">Redeem</button>
-          </div>
-        </form>
-      </div>
-      <div class="col-md-7 col-lg-8">
-        <h4 class="mb-3">Billing address</h4>
-        <%= form_with model: @order, local: true, class: "needs-validation" do |form| %>
-        <form class="needs-validation" novalidate>
-          <div class="row g-3">
-            <div class="col-sm-6">
-              <%= form.label :first_name, "First name", class: "form-label" %>
-              <%= form.text_field :first_name, class: "form-control", id: "firstName", required: true %>
-              <div class="invalid-feedback">
-                  Your frist name is required.
-                </div>
-            </div>
-
-            <div class="col-sm-6">
-              <%= form.label :last_name, "Last name", class: "form-label" %>
-              <%= form.text_field :last_name, class: "form-control", id: "lastName", required: true %>
-              <div class="invalid-feedback">
-                  Your last name is required.
-                </div>
-            </div>
-
-            <div class="col-12">
-              <%= form.label :username, "Username", class: "form-label" %>
-              <div class="input-group has-validation">
-                <span class="input-group-text">@</span>
-                <%= form.text_field :username, class: "form-control", id: "username", placeholder: "Username", required: true %>
-              <div class="invalid-feedback">
-                  Your username is required.
-                </div>
-              </div>
-            </div>
-
-            <div class="col-12">
-              <%= form.label :email, "Email", class: "form-label" %>
-              <%= form.email_field :email, class: "form-control", id: "email", placeholder: "you@example.com" %>
-              <div class="invalid-feedback">
-                Please enter a valid email address for shipping updates.
-              </div>
-            </div>
-
-            <div class="col-12">
-              <%= form.label :address, "Address", class: "form-label" %>
-              <%= form.text_field :address, class: "form-control", id: "address", placeholder: "1234 Main St", required: true %>
-              <div class="invalid-feedback">
-                Please enter your shipping address.
-              </div>
-            </div>
-
-            <div class="col-12">
-               <%= form.label :address2, "Address 2", class: "form-label" %>
-               <%= form.text_field :address2, class: "form-control", id: "address2", placeholder: "Apartment or suite" %>
-            </div>
-
-            <div class="col-md-5">
-              <%= form.label :country, "Country", class: "form-label" %>
-              <%= form.select :country, options_for_select([["United States", "US"],["Japan", "JA"]]), { prompt: "Choose..." }, class: "form-select", id: "country", required: true %>
-              <div class="invalid-feedback">
-                Please select a valid country.
-              </div>
-            </div>
-
-            <div class="col-md-4">
-              <%= form.label :state, "State", class: "form-label" %>
-              <%= form.select :state, options_for_select([["California", "CA"]]), { prompt: "Choose..." }, class: "form-select", id: "state", required: true %>
-              <div class="invalid-feedback">
-                Please provide a valid state.
-              </div>
-            </div>
-
-            <div class="col-md-3">
-              <%= form.label :zip, "Zip", class: "form-label" %>
-              <%= form.text_field :zip, class: "form-control", id: "zip", required: true %>
-              <div class="invalid-feedback">
-                Zip code required.
-              </div>
-            </div>
-          </div>
-
-          <hr class="my-4">
-
-          <div class="form-check">
-            <%= form.check_box :same_address, class: "form-check-input", id: "same-address" %>
-             <%= form.label :same_address, "Shipping address is the same as my billing address", class: "form-check-label", for: "same-address" %>
-          </div>
-
-          <div class="form-check">
-            <%= form.check_box :save_info, class: "form-check-input", id: "save-info" %>
-            <%= form.label :save_info, "Save this information for next time", class: "form-check-label", for: "save-info" %>
-          </div>
-
-          <hr class="my-4">
-
-          <h4 class="mb-3">Payment</h4>
-
-          <div class="my-3">
-            <div class="form-check">
-              <%= form.radio_button :payment_method, "credit_card", class: "form-check-input", id: "credit", required: true %>
-              <%= form.label :payment_method, "Credit card", class: "form-check-label", for: "credit" %>
-            </div>
-          </div>
-
-          <div class="row gy-3">
-            <div class="col-md-6">
-              <%= form.label :cc_name, "Name on card", class: "form-label" %>
-              <%= form.text_field :cc_name, class: "form-control", id: "cc-name", required: true %>
-              <small class="text-body-secondary">Full name as displayed on card</small>
-              <div class="invalid-feedback">
-                Name on card is required
-              </div>
-            </div>
-
-            <div class="col-md-6">
-              <%= form.label :cc_number, "Credit card number", class: "form-label" %>
-              <%= form.text_field :cc_number, class: "form-control", id: "cc-number", required: true %>
-              <div class="invalid-feedback">
-                Credit card number is required
-              </div>
-            </div>
-
-            <div class="col-md-3">
-              <%= form.label :cc_expiration, "Expiration", class: "form-label" %>
-              <%= form.text_field :cc_expiration, class: "form-control", id: "cc-expiration", required: true %>
-              <div class="invalid-feedback">
-                Expiration date required
+              <div class="col-md-7 col-lg-8">
+                <h4 class="mb-3">Billing address</h4>
+                <%= form_with model: @order, local: true, class: "needs-validation" do |form| %>
+                  <form class="needs-validation" novalidate>
+                    <div class="row g-3">
+                      <div class="col-sm-6">
+                        <%= form.label :first_name, "First name", class: "form-label" %>
+                        <%= form.text_field :first_name, class: "form-control", id: "firstName", required: true %>
+                        <div class="invalid-feedback">
+                          Your frist name is required.
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <%= form.label :last_name, "Last name", class: "form-label" %>
+                        <%= form.text_field :last_name, class: "form-control", id: "lastName", required: true %>
+                        <div class="invalid-feedback">
+                          Your last name is required.
+                        </div>
+                      </div>
+                      <div class="col-12">
+                        <%= form.label :username, "Username", class: "form-label" %>
+                        <div class="input-group has-validation">
+                          <span class="input-group-text">@</span>
+                          <%= form.text_field :username, class: "form-control", id: "username", placeholder: "Username", required: true %>
+                          <div class="invalid-feedback">
+                            Your username is required.
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12">
+                        <%= form.label :email, "Email", class: "form-label" %>
+                        <%= form.email_field :email, class: "form-control", id: "email", placeholder: "you@example.com" %>
+                        <div class="invalid-feedback">
+                          Please enter a valid email address for shipping updates.
+                        </div>
+                      </div>
+                      <div class="col-12">
+                        <%= form.label :address, "Address", class: "form-label" %>
+                        <%= form.text_field :address, class: "form-control", id: "address", placeholder: "1234 Main St", required: true %>
+                        <div class="invalid-feedback">
+                          Please enter your shipping address.
+                        </div>
+                      </div>
+                      <div class="col-12">
+                        <%= form.label :address2, "Address 2", class: "form-label" %>
+                        <%= form.text_field :address2, class: "form-control", id: "address2", placeholder: "Apartment or suite" %>
+                      </div>
+                      <div class="col-md-5">
+                        <%= form.label :country, "Country", class: "form-label" %>
+                        <%= form.select :country, options_for_select([["United States", "US"],["Japan", "JA"]]), { prompt: "Choose..." }, class: "form-select", id: "country", required: true %>
+                        <div class="invalid-feedback">
+                          Please select a valid country.
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <%= form.label :state, "State", class: "form-label" %>
+                        <%= form.select :state, options_for_select([["California", "CA"]]), { prompt: "Choose..." }, class: "form-select", id: "state", required: true %>
+                        <div class="invalid-feedback">
+                          Please provide a valid state.
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <%= form.label :zip, "Zip", class: "form-label" %>
+                        <%= form.text_field :zip, class: "form-control", id: "zip", required: true %>
+                        <div class="invalid-feedback">
+                          Zip code required.
+                        </div>
+                      </div>
+                    </div>
+                    <hr class="my-4">
+                    <div class="form-check">
+                      <%= form.check_box :same_address, class: "form-check-input", id: "same-address" %>
+                      <%= form.label :same_address, "Shipping address is the same as my billing address", class: "form-check-label", for: "same-address" %>
+                    </div>
+                    <div class="form-check">
+                      <%= form.check_box :save_info, class: "form-check-input", id: "save-info" %>
+                      <%= form.label :save_info, "Save this information for next time", class: "form-check-label", for: "save-info" %>
+                    </div>
+                    <hr class="my-4">
+                    <h4 class="mb-3">Payment</h4>
+                    <div class="my-3">
+                      <div class="form-check">
+                        <%= form.radio_button :payment_method, "credit_card", class: "form-check-input", id: "credit", required: true %>
+                        <%= form.label :payment_method, "Credit card", class: "form-check-label", for: "credit" %>
+                      </div>
+                    </div>
+                    <div class="row gy-3">
+                      <div class="col-md-6">
+                        <%= form.label :cc_name, "Name on card", class: "form-label" %>
+                        <%= form.text_field :cc_name, class: "form-control", id: "cc-name", required: true %>
+                        <small class="text-body-secondary">Full name as displayed on card</small>
+                        <div class="invalid-feedback">
+                          Name on card is required
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <%= form.label :cc_number, "Credit card number", class: "form-label" %>
+                        <%= form.text_field :cc_number, class: "form-control", id: "cc-number", required: true %>
+                        <div class="invalid-feedback">
+                          Credit card number is required
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <%= form.label :cc_expiration, "Expiration", class: "form-label" %>
+                        <%= form.text_field :cc_expiration, class: "form-control", id: "cc-expiration", required: true %>
+                        <div class="invalid-feedback">
+                          Expiration date required
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <%= form.label :cc_cvv, "CVV", class: "form-label" %>
+                        <%= form.text_field :cc_cvv, class: "form-control", id: "cc-cvv", required: true %>
+                        <div class="invalid-feedback">
+                          Security code required
+                        </div>
+                      </div>
+                    </div>
+                    <hr class="my-4">
+                    <%= form.submit t('cart_items.index.continue_to_checkout'), class: "w-100 btn btn-primary btn-lg" %>
+                  </form>
+                <% end %>
               </div>
             </div>
-
-            <div class="col-md-3">
-              <%= form.label :cc_cvv, "CVV", class: "form-label" %>
-              <%= form.text_field :cc_cvv, class: "form-control", id: "cc-cvv", required: true %>
-              <div class="invalid-feedback">
-                Security code required
-              </div>
-            </div>
-          </div>
-
-          <hr class="my-4">
-          <%= form.submit t('cart_items.index.continue_to_checkout'), class: "w-100 btn btn-primary btn-lg" %>
-        </form>
-        <% end %>
+          </main>
+          <footer class="my-5 pt-5 text-body-secondary text-center text-small">
+            <p class="mb-1">&copy; 2017–2024 Company Name</p>
+            <ul class="list-inline">
+              <li class="list-inline-item"><a href="#">Privacy</a></li>
+              <li class="list-inline-item"><a href="#">Terms</a></li>
+              <li class="list-inline-item"><a href="#">Support</a></li>
+            </ul>
+          </footer>
+        </div>
       </div>
     </div>
-  </main>
-
-  <footer class="my-5 pt-5 text-body-secondary text-center text-small">
-    <p class="mb-1">&copy; 2017–2024 Company Name</p>
-    <ul class="list-inline">
-      <li class="list-inline-item"><a href="#">Privacy</a></li>
-      <li class="list-inline-item"><a href="#">Terms</a></li>
-      <li class="list-inline-item"><a href="#">Support</a></li>
-    </ul>
-  </footer>
-   </div>
-  </div>
-</div>
-<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-
+    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
     <script src="checkout.js"></script></body>
 </html>

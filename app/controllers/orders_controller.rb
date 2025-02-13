@@ -1,18 +1,15 @@
 # frozen_string_literal: true
 
 class OrdersController < ApplicationController
-  def new
-    @order = Order.new(order_params)
-  end
-
   def create
     @order = Order.new(order_params)
     @order.cart = set_cart
 
     if @order.save!
-      redirect_to root_path, notice: '購入ありがとうございます'
+      redirect_to root_path, notice: I18n.t('notices.order_thanks')
     else
-      render cart_items_path, noteice: '購入に失敗しました'
+      flash.now[:alert] = I18n.t('notices. order_failed')
+      render template: 'cart_items/index'
     end
   end
 

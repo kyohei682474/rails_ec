@@ -18,8 +18,8 @@ class CreateOrders < ActiveRecord::Migration[7.0]
       t.string :cc_number, null: false
       t.string :cc_expiration, null: false
       t.string :cc_cvv, null: false
-      t.boolean :same_address, null: false
-      t.boolean :save_info, null: false
+      t.boolean :same_address, null: false, default: true
+      t.boolean :save_info, null: false, default: false
       t.integer :total_price, null: false
 
       t.timestamps

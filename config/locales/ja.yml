@@ -19,6 +19,10 @@ ja:
     updated: "カートが更新されました"
     deleted: "カートが削除されました"
     update_failed: "カートの更新に失敗しました"
+  notices:
+    order_thanks: "購入ありがとうございます"
+    order_failed: "購入に失敗しました"
+
       
 
 
