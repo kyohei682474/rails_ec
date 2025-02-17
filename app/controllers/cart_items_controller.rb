@@ -5,7 +5,7 @@ class CartItemsController < ApplicationController
 
   def index
     # カート内アイテムを全て表示する
-    @cart_items = set_cart.cart_items.includes(:item)
+    @cart_items = current_cart.cart_items.includes(:item)
     # 住所やクレジット情報を記入するための@order
     @order = Order.new
   end
@@ -17,12 +17,12 @@ class CartItemsController < ApplicationController
 
   def increase
     if @cart_item.nil?
-      @cart_item = set_cart.cart_items.build(item_id: params[:item_id])
+      @cart_item = current_cart.cart_items.build(item_id: params[:item_id])
       @cart_item.save
-      @cart_item.increment(:quantity, params.permit(:quantity)[:quantity].to_i)
-      redirect_to item_path, notice: t('cart_items.added')
+      @cart_item.increment!(:quantity, params.permit(:quantity)[:quantity].to_i)
+      redirect_to item_path(@cart_item.item_id), notice: t('cart_items.added')
     else
-      @cart_item.increment(:quantity, params.permit(:quantity)[:quantity].to_i)
+      @cart_item.increment!(:quantity, params.permit(:quantity)[:quantity].to_i)
       redirect_to item_path(@cart_item.item_id), notice: t('cart_items.updated')
     end
   end
@@ -36,19 +36,20 @@ class CartItemsController < ApplicationController
   private
 
   def set_cart_item
-    # set_cartに関連するcart_itemの情報を取り出す
-    @cart_item = set_cart.cart_items.find_by(id: params[:id]) || set_cart.cart_items.find_by(item_id: params[:item_id])
+    # current_cartに関連するcart_itemの情報を取り出す
+    @cart_item = current_cart.cart_items.find_by(id: params[:id]) ||
+                 current_cart.cart_items.find_by(item_id: params[:item_id])
   end
 
   def increase_or_create(item_id)
     # カートに商品が入っていた時のcart_item
-    cart_item = set_cart.cart_items.find_by(item_id: item_id)
+    cart_item = current_cart.cart_items.find_by(item_id: item_id)
     if cart_item
       # cart_itemの商品の数が１つ増える。
       cart_item.increment(:quantity, 1)
     else
       # 初めてカートに商品を入れた時
-      set_cart.cart_items.build(item_id: item_id).save
+      current_cart.cart_items.build(item_id: item_id).save
     end
   end
 end

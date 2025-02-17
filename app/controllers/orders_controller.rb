@@ -2,9 +2,7 @@
 
 class OrdersController < ApplicationController
   def create
-    @order = Order.new(order_params)
-    @order.cart = set_cart
-
+    @order = current_cart.orders.build(order_params)
     if @order.save!
       redirect_to root_path, notice: I18n.t('notices.order_thanks')
     else

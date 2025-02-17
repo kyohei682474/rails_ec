@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
-  helper_method :set_cart
+  helper_method :current_cart
 
   private
 
-  def set_cart
-    set_cart ||= Cart.find_by(id: session[:cart_id]) || Cart.create
-    session[:cart_id] ||= set_cart.id
-    set_cart
+  def current_cart
+    current_cart ||= Cart.find_by(id: session[:cart_id]) || Cart.create
+    session[:cart_id] ||= current_cart.id
+    current_cart
   end
 end
