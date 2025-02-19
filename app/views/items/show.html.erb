@@ -10,47 +10,52 @@
         </div>
         <p class="lead"><%= simple_format(@item.description) %></p>
         <div class="d-flex">
-          <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
-          <button class="btn btn-outline-dark flex-shrink-0" type="button">
-            <i class="bi-cart-fill me-1"></i>
-            <%= t('items.show.Add_To_Cart')%>
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- Related items section-->
-<section class="py-5 bg-light">
-  <div class="container px-4 px-lg-5 mt-5">
-    <h2 class="fw-bolder mb-4"><%= t('items.show.Related_Products')%></h2>
-    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-      <% @items.each do |item| %>
-        <div class="col mb-5">
-          <div class="card h-100">
-            <!-- Product image-->
-            <% if item.image.attached? %>
-              <% variant_image = item.image.variant(resize_to_fill: [450, 300]).processed %>
-              <%= link_to item do %>
-                <%= image_tag variant_image, class: "card-img-top" %>
-              <% end %>
-            <% end %>
-            <!-- Product details-->
-            <div class="card-body p-4">
-              <div class="text-center">
-                <!-- Product name-->
-                <h5 class="fw-bolder"><%= item.name %></h5>
-                <!-- Product price-->
-                <%= item.price %>円
+          <%# <%= form_with url: increase_cart_item_path(@cart_item,item_id: @item.id), method: :patch do |f| %>
+            <%# <%= form_with url: increase_cart_item_path(item_id: @item.id, cart_item_id: cart_item_id: @cart_item.id), method: :patch do |f| %>
+              <%# <%= form_with url: increase_cart_item_path(item_id: @item.id),  method: :patch do |f| %>
+                <%# <%= form_with model: @cart_item, url: increase_cart_item_path(item_id: @item.id), method: :patch do |f| %>
+                  <%# <%= form_with url: increase_cart_item_path(item_id: @item.id), method: :patch do |f| %>
+                    <%= form_with url: url_for(controller: 'cart_items', action: 'increase', item_id: @item.id), method: :patch do |f| %>
+                      <%= f.number_field :quantity, in: 1..20 %>
+                      <i class="bi-cart-fill me-1"></i>
+                      <%= f.submit "Add to Cart", class: "btn btn-outline-dark flex-shrink-0" %>
+                    <% end %>
+                  </div>
+                </div>
               </div>
             </div>
-            <!-- Product actions-->
-            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-              <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View options</a></div>
+          </section>
+          <!-- Related items section-->
+          <section class="py-5 bg-light">
+            <div class="container px-4 px-lg-5 mt-5">
+              <h2 class="fw-bolder mb-4"><%= t('items.show.Related_Products')%></h2>
+              <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                <% @items.each do |item| %>
+                  <div class="col mb-5">
+                    <div class="card h-100">
+                      <!-- Product image-->
+                      <% if item.image.attached? %>
+                        <% variant_image = item.image.variant(resize_to_fill: [450, 300]).processed %>
+                        <%= link_to item do %>
+                          <%= image_tag variant_image, class: "card-img-top" %>
+                        <% end %>
+                      <% end %>
+                      <!-- Product details-->
+                      <div class="card-body p-4">
+                        <div class="text-center">
+                          <!-- Product name-->
+                          <h5 class="fw-bolder"><%= item.name %></h5>
+                          <!-- Product price-->
+                          <%= item.price %>円
+                        </div>
+                      </div>
+                      <!-- Product actions-->
+                      <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View options</a></div>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
             </div>
-          </div>
-        </div>
-      <% end %>
-    </div>
-  </div>
-</section>
+          </section>

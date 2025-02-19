@@ -15,13 +15,9 @@
         <div class="col mb-5">
           <!-- Product image-->
           <div class="card h-100">
-            <% if item.image.present? %>
-              <% variant_image = item.image.variant(resize_to_fill: [450, 300]).processed %>
-              <%= link_to item do %>
-                <%= image_tag variant_image, class: "card-img-top" %>
-              <% end %>
+            <%= link_to item_path(item), class: "d-block" do %>
+              <%= image_tag(item.image, class: "card-img-top") if item.image.present? %>
             <% end %>
-            <%# <%= image_tag item.image.variant(resize_to_fill: [450, 300]) if item.image.present? %>
             <!-- Product details-->
             <div class="card-body p-4">
               <div class="text-center">
@@ -33,7 +29,11 @@
             </div>
             <!-- Product actions-->
             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-              <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View options</a></div>
+              <%= form_with url: cart_items_path(item_id: item.id),  method: :post do |f| %>
+                <div class="text-center">
+                  <%= f.submit "Add to Cart",  class: "btn btn-outline-dark mt-auto" %>
+                </div>
+              <% end %>
             </div>
           </div>
         </div>
