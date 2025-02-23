@@ -75,7 +75,8 @@ group :development do
   gem 'rubocop-rspec', require: false
   gem 'stringio', '~> 3.1.2'
   gem 'web-console'
-
+  gem 'letter_opener_web'
+  gem 'concurrent-ruby', '1.3.4'
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 

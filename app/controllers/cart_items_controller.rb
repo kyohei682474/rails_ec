@@ -46,7 +46,7 @@ class CartItemsController < ApplicationController
     cart_item = current_cart.cart_items.find_by(item_id: item_id)
     if cart_item
       # cart_itemの商品の数が１つ増える。
-      cart_item.increment(:quantity, 1)
+      cart_item.increment!(:quantity, 1)
     else
       # 初めてカートに商品を入れた時
       current_cart.cart_items.build(item_id: item_id).save
