@@ -1,0 +1,22 @@
+<h1>購入明細詳細</h1>
+<p>注文ID: <%= @order.id %></p>
+<p>購入者: <%= @order.email %></p>
+<p>購入日時: <%= @order.created_at.strftime('%Y-%m-%d %H:%M') %></p>
+
+<h2>商品一覧</h2>
+<table>
+  <tr>
+    <th>商品名</th>
+    <th>価格</th>
+    <th>数量</th>
+  </tr>
+  <% @order.order_details.each do |order_detail| %>
+    <tr>
+      <td><%= order_detail.item_name %></td>
+      <td><%= order_detail.item_price %> 円</td>
+      <td><%= order_detail.quantity %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to '戻る', orders_path %>
