@@ -5,6 +5,6 @@ class Order < ApplicationRecord
   belongs_to :cart
 
   def total_price
-    order_details.sum{ |order_detail| order_detail.item_price * order_detail.quantity }
+    order_details.sum { |order_detail| order_detail.item_price * order_detail.quantity }
   end
 end

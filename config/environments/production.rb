@@ -72,14 +72,14 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-  address: ENV['MAILGUN_SMTP_SERVER'],
-  port: ENV['MAILGUN_SMTP_PORT'].to_i,
-  domain: ENV['MAILGUN_DOMAIN'],
-  user_name: ENV['MAILGUN_SMTP_LOGIN'],
-  password: ENV['MAILGUN_SMTP_PASSWORD'],
-  authentication: :plain,
-  enable_starttls_auto: true
-}
+    address: ENV.fetch('MAILGUN_SMTP_SERVER', nil),
+    port: ENV['MAILGUN_SMTP_PORT'].to_i,
+    domain: ENV.fetch('MAILGUN_DOMAIN', nil),
+    user_name: ENV.fetch('MAILGUN_SMTP_LOGIN', nil),
+    password: ENV.fetch('MAILGUN_SMTP_PASSWORD', nil),
+    authentication: :plain,
+    enable_starttls_auto: true
+  }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).

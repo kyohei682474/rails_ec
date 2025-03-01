@@ -66,7 +66,9 @@ end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
+  gem 'concurrent-ruby', '1.3.4'
   gem 'htmlbeautifier'
+  gem 'letter_opener_web'
   gem 'pry-byebug'
   gem 'rails_best_practices'
   gem 'rubocop', require: false
@@ -75,8 +77,6 @@ group :development do
   gem 'rubocop-rspec', require: false
   gem 'stringio', '~> 3.1.2'
   gem 'web-console'
-  gem 'letter_opener_web'
-  gem 'concurrent-ruby', '1.3.4'
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 

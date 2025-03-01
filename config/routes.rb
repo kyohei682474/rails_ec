@@ -12,10 +12,8 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :items, only: %i[index create show destroy update new edit]
   end
-  
-  if Rails.env.development?
-    mount LetterOpenerWeb::Engine, at: "/letter_opener"
-  end
+
+  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
