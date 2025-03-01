@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class OrdersController < ApplicationController
-  
+before_action :basic_auth_admin,  only: %i[show index]
 
   def create
     @order = current_cart.orders.build(order_params)
@@ -43,5 +43,15 @@ class OrdersController < ApplicationController
                                   :address2, :country, :state,:zip, :payment_method,
                                   :cc_name, :cc_number, :cc_expiration, :cc_cvv
                                   )
+  end
+
+  def basic_auth_admin
+    authenticate_or_request_with_http_basic do |username, password|
+      if username == ENV['BASIC_AUTH_USERNAME'] && password == ENV['BASIC_AUTH_PASSWORD']
+        true
+      else
+        render plain: '認証に失敗しました。正しい認証情報を入力してください。', status: :unauthorized
+      end
+    end
   end
 end
