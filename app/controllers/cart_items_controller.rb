@@ -57,3 +57,20 @@ class CartItemsController < ApplicationController
     end
   end
 end
+
+
+
+
+def increase
+  return @cart_item.increase_cart_item_quantity unless @cart_item.nil?
+
+    @cart_item = current_cart.cart_items.build(item_id: params[:item_id])
+    @cart_item.save
+    @cart_item.increase_cart_item_quantity
+  
+  def increase_cart_item_quantity
+    @cart_item.increment(:quantity, params.permit(:quantity)[:quantity].to_i)
+    @cart_item.save
+    redirect_to item_path(@cart_item.item_id), notice: t('cart_items.updated')
+  end
+end
