@@ -7,7 +7,7 @@ class OrderMailer < ApplicationMailer
     mail(
       subject: I18n.t('order_mailer.thank_you_subject'),
       to: @order.email,
-      from: '18kyohei@gmai.com'
+      from: 'rails_ec@example.com'
     )
   end
 end

@@ -7,9 +7,7 @@
       <p><strong>注文ID:</strong> <%= @order.id %></p>
       <p><strong>email:</strong> <%= @order.email %></p>
       <p><strong>購入日時:</strong> <%= @order.created_at.strftime('%Y-%m-%d %H:%M') %></p>
-
       <h2 class="h5 border-bottom pb-2 mt-4">商品一覧</h2>
-
       <table class="table table-striped table-bordered table-hover mt-3">
         <thead class="table-dark">
           <tr>
@@ -28,7 +26,6 @@
           <% end %>
         </tbody>
       </table>
-
       <div class="text-center mt-4">
         <%= link_to '戻る', orders_path, class: "btn btn-primary" %>
       </div>
