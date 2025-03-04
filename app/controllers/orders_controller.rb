@@ -12,29 +12,33 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = current_cart.orders.build(order_params)
-    if @order.save!
-      # current_cartに紐づいているorder_detailオブジェクトを生成する
-      current_cart.cart_items.each do |cart_item|
-        @order.order_details.create(
-          item_id: cart_item.item.id,
-          item_name: cart_item.item.name,
-          item_price: cart_item.item.price,
-          quantity: cart_item.quantity
-        )
-      end
+    ActiveRecord::Base.transaction do
+      @order = current_cart.orders.build(order_params)
+      @order.save!
+      
+        # current_cartに紐づいているorder_detailオブジェクトを生成する
+        current_cart.cart_items.each do |cart_item|
+          @order.order_details.create!(
+            item_id: cart_item.item.id,
+            item_name: cart_item.item.name,
+            item_price: cart_item.item.price,
+            quantity: cart_item.quantity
+          )
+        end
+      
 
-      current_cart.cart_items.destroy_all
-
+        current_cart.cart_items.destroy_all
+    end 
       # 購入するボタンが押されるとメールが送信できるようにする。
       OrderMailer.with(order: @order).order_detail_email.deliver_now
-
       redirect_to root_path, notice: I18n.t('notices.order_thanks')
-    else
-      flash.now[:alert] = I18n.t('notices. order_failed')
+    rescue ActiveRecord::RecordInvalid => e
+      Rails.logger.error "注文作成エラー: #{e.message}"
+      flash.now[:alert] = I18n.t('notices.order_failed')
       render template: 'cart_items/index'
     end
   end
+  
 
   private
 
@@ -52,3 +56,7 @@ class OrdersController < ApplicationController
     end
   end
 end
+
+
+
+
