@@ -35,13 +35,7 @@ class OrdersController < ApplicationController
                                   :cc_name, :cc_number, :cc_expiration, :cc_cvv)
   end
 
-  def basic_auth_admin
-    authenticate_or_request_with_http_basic do |username, password|
-      (username == ENV['BASIC_AUTH_USERNAME'] && password == ENV['BASIC_AUTH_PASSWORD']) || render(
-        plain: '認証に失敗しました。正しい認証情報を入力してください。', status: :unauthorized
-      )
-    end
-  end
+  
 
   # current_cartに紐づいているorder_detailオブジェクトを生成する
   def create_order_detail(order)
