@@ -16,10 +16,10 @@ class OrdersController < ApplicationController
       @order = current_cart.orders.build(order_params)
       @order.save!
       create_order_detail(@order)
-      current_cart.cart_items.destroy_all
+      cart_items_clear
     end
     # 購入するボタンが押されるとメールが送信できるようにする。
-    OrderMailer.with(order: @order).order_detail_email.deliver_now
+    send_order_email(@order)
     redirect_to root_path, notice: I18n.t('notices.order_thanks')
   rescue ActiveRecord::RecordInvalid => e
     Rails.logger.error "注文作成エラー: #{e.message}"
@@ -53,5 +53,15 @@ class OrdersController < ApplicationController
         quantity: cart_item.quantity
       )
     end
+  end
+
+  # カートの中身を全て削除するためのメソッド
+  def cart_item_clear
+    current_cart.cart_items.destroy_all
+  end
+
+  # メールを送信する機能
+  def send_order_email(order)
+    OrderMailer.with(order: order).order_detail_email.deliver_now
   end
 end
