@@ -50,7 +50,7 @@ class OrdersController < ApplicationController
   end
 
   # カートの中身を全て削除するためのメソッド
-  def cart_item_clear
+  def cart_items_clear
     current_cart.cart_items.destroy_all
   end
 
@@ -59,3 +59,8 @@ class OrdersController < ApplicationController
     OrderMailer.with(order: order).order_detail_email.deliver_now
   end
 end
+
+
+
+
+
