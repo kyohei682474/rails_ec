@@ -48,7 +48,5 @@ module Admin
     def set_target_item
       @item = Item.find(params[:id])
     end
-
-
   end
 end

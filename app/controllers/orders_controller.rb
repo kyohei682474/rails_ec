@@ -35,8 +35,6 @@ class OrdersController < ApplicationController
                                   :cc_name, :cc_number, :cc_expiration, :cc_cvv)
   end
 
-  
-
   # current_cartに紐づいているorder_detailオブジェクトを生成する
   def create_order_detail(order)
     current_cart.cart_items.each do |cart_item|
@@ -59,8 +57,3 @@ class OrdersController < ApplicationController
     OrderMailer.with(order: order).order_detail_email.deliver_now
   end
 end
-
-
-
-
-
