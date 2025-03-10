@@ -1,0 +1,34 @@
+<div class="container mt-5">
+  <div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+      <h1 class="h4 text-center mb-0">購入明細詳細</h1>
+    </div>
+    <div class="card-body">
+      <p><strong>注文ID:</strong> <%= @order.id %></p>
+      <p><strong>email:</strong> <%= @order.email %></p>
+      <p><strong>購入日時:</strong> <%= @order.created_at.strftime('%Y-%m-%d %H:%M') %></p>
+      <h2 class="h5 border-bottom pb-2 mt-4">商品一覧</h2>
+      <table class="table table-striped table-bordered table-hover mt-3">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">商品名</th>
+            <th scope="col" class="text-end">価格</th>
+            <th scope="col" class="text-center">数量</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @order.order_details.each do |order_detail| %>
+            <tr>
+              <td><%= order_detail.item_name %></td>
+              <td class="text-end"><%= order_detail.item_price %> 円</td>
+              <td class="text-center"><%= order_detail.quantity %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <div class="text-center mt-4">
+        <%= link_to '戻る', orders_path, class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+</div>

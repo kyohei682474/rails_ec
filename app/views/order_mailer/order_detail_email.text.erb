@@ -1,0 +1,11 @@
+<%= @order.username %>様、購入ありがとうございます。
+ご注文ありがとうございます
+以下の内容でご注文を承りました。
+  <% @order.order_details.each do |order_detail| %>
+    <li>
+      商品名: <%= order_detail.item_name %><br>
+      価格: <%= order_detail.item_price %>円<br>
+      数量: <%= order_detail.quantity %>
+    </li>
+  <% end %>
+  合計金額: <%= @order.total_price %>円になります

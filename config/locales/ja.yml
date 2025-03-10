@@ -22,8 +22,8 @@ ja:
   notices:
     order_thanks: "購入ありがとうございます"
     order_failed: "購入に失敗しました"
-
-      
+  order_mailer:
+    thank_you_subject: "ご購入ありがとうございます"    
 
 
   activerecord:

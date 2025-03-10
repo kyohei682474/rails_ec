@@ -48,15 +48,5 @@ module Admin
     def set_target_item
       @item = Item.find(params[:id])
     end
-
-    def basic_auth_admin
-      authenticate_or_request_with_http_basic do |username, password|
-        if username == ENV['BASIC_AUTH_USERNAME'] && password == ENV['BASIC_AUTH_PASSWORD']
-          true
-        else
-          render plain: '認証に失敗しました。正しい認証情報を入力してください。', status: :unauthorized
-        end
-      end
-    end
   end
 end
