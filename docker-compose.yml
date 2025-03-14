@@ -4,7 +4,14 @@ services:
     volumes:
       - db:/var/lib/postgresql/data
     environment:
+      - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=password
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      retries: 5
+      timeout: 5s  
+
   web:
     build: .
     image: rails_template:latest
@@ -16,7 +23,8 @@ services:
     ports:
       - "3000:3000"
     depends_on:
-      - db
+      db:
+       condition: service_healthy
     tty: true
     stdin_open: true
     

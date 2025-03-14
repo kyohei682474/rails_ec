@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 class CartItemsController < ApplicationController
-  before_action :set_cart_item, only: %i[increase destroy increase]
-
+  before_action :set_cart_item, only: %i[increase destroy]
+  before_action :current_cart
+  
   def index
     # カート内アイテムを全て表示する
-    @cart_items = current_cart.cart_items.includes(:item)
+    @cart_items = @current_cart.cart_items.includes(:item)
     @total = @cart_items.inject(0) { |sum, cart_item| sum + cart_item.line_total }
     # 住所やクレジット情報を記入するための@order
     @order = Order.new
@@ -45,8 +46,8 @@ class CartItemsController < ApplicationController
   end
 
   def increase_or_create(item_id)
-    # カートに商品が入っていた時のcart_item
-    cart_item = current_cart.cart_items.find_by(item_id: item_id)
+    # カートに商品が入っているか確認を行う
+    cart_item = @current_cart.cart_items.find_by(item_id: item_id)
     if cart_item
       # cart_itemの商品の数が１つ増える。
       cart_item.increment(:quantity, 1)
