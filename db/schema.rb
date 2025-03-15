@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_03_03_101100) do
+ActiveRecord::Schema[7.0].define(version: 2025_03_14_212454) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -96,6 +96,15 @@ ActiveRecord::Schema[7.0].define(version: 2025_03_03_101100) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["cart_id"], name: "index_orders_on_cart_id"
+  end
+
+  create_table "promotion_codes", force: :cascade do |t|
+    t.string "code", null: false
+    t.integer "discount_amount", null: false
+    t.boolean "used", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["code"], name: "index_promotion_codes_on_code", unique: true
   end
 
   create_table "tasks", force: :cascade do |t|
