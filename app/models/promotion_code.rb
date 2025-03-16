@@ -3,9 +3,7 @@ class PromotionCode < ApplicationRecord
   validates :discount_amount, presence: true, numericality: { grater_than_or_equal_to: 100, less_than_or_equal_to:1000  }
   validates :used, inclusion: { in: [true, false] }
 
-  def apply
-    raise "このコードは使用済みです" if used?
-    
+  def change_used_status
     self.update!(used: true)
   end
 end
