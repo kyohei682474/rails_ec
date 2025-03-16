@@ -12,6 +12,7 @@ class OrdersController < ApplicationController
   end
 
   def create
+    @promotion_code = PromotionCode.find_by(code: params[:promotion_code])
     ActiveRecord::Base.transaction do
       @order = current_cart.orders.build(order_params)
       @order.save!
