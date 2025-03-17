@@ -169,23 +169,24 @@
                       </div>
                       <span class="text-body-secondary"><%= cart_item.item.price %>円</span>
                     </li>
-                  <% end %>
+                  
                   <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
                     <div class="text-success">
-                      <h6 class="my-0">Promo code</h6>
+                      <h6 class="my-0"><%= cart_item.cart.promotion_code.code %></h6>
                       <small>EXAMPLECODE</small>
                     </div>
-                    <span class="text-success">−$5</span>
+                    <span class="text-success">−<%=cart_item.cart.promotion_code.discount_amount %></span>
                   </li>
                   <li class="list-group-item d-flex justify-content-between">
                     <span>合計金額</span>
                     <strong><%= @total %>円</strong>
                   </li>
+                  <% end %>
                 </ul>
-                <%= form_with model @cart_item, cart_items_path |form| do %>  
+                <%= form_with url: promotion_code_path, method: :post, local: true do |form|  %>  
                 <form class="card p-2">
                   <div class="input-group">
-                    <%= form.text_field: promotion_code, class: "form-controll" ,placeholder: "Promo code" %>
+                    <%= form.text_field :promotion_code, class: "form-controll", placeholder: "Promo code", required: true %>
                     <%= form.submit "適用", class: "btn btn-secondary" %>
                   </div>
                 </form>
