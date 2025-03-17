@@ -5,14 +5,6 @@ class CartItemsController < ApplicationController
   before_action :current_cart
   
   def index
-    #プロモーションコードを表示させる
-    @promotion_code = PromotionCode.find_by(code: promotion_doce)
-    if @promotion_code.used
-      raise "使用済みのコードです"
-    else
-      @promotion_code
-    end
-    
     # カート内アイテムを全て表示する
     @cart_items = @current_cart.cart_items.includes(:item)
     @total = @cart_items.inject(0) { |sum, cart_item| sum + cart_item.line_total }
