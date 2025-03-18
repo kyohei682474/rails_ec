@@ -6,7 +6,7 @@ class Cart < ApplicationRecord
   belongs_to :promotion_code, optional: true 
 
   def update_total_price
-    self.total_price = cart.cart_items.sum{ |cart_item| cart_item.item.price * cart_item.quantity }
+    self.total_price = cart_items.sum{ |cart_item| cart_item.item.price * cart_item.quantity }
   end
   # 最終的な金額を定義
   def final_price
