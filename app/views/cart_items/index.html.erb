@@ -181,10 +181,10 @@
                   </li>
                   <li class="list-group-item d-flex justify-content-between">
                     <span>合計金額</span>
-                    <strong><%= current_cart.total_price %>円</strong>
+                    <strong><%= current_cart.final_price %>円</strong>
                   </li>
                 </ul>
-                <%= form_with url: "apply_promotion_codes", method: :post, local: true do |form|  %>  
+                <%= form_with url: apply_promotion_codes_path, method: :post, local: true do |form|  %>  
                 <form class="card p-2">
                   <div class="input-group">
                     <%= form.text_field :promotion_code, class: "form-controll", placeholder: "Promo code", required: true %>

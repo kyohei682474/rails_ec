@@ -14,5 +14,10 @@ class Cart < ApplicationRecord
   # 最終的な金額を定義
   def final_price
     total_price - discount_amount
+    if total_price - discount_amount  > 0
+      total_price - discount_amount
+    else
+      0
+    end
   end
 end
