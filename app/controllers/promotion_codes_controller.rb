@@ -22,6 +22,6 @@ class PromotionCodesController < ApplicationController
       discount_amount: promotion_code.discount_amount,
       total_price: current_cart.cart_items.sum {|cart_item| cart_item.item.price * cart_item.quantity }
     )
-    promotion_code.change_used_stsatus 
+    promotion_code.change_used_status 
   end
 end
