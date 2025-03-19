@@ -2,6 +2,7 @@ class PromotionCodesController < ApplicationController
   before_action: current_cart
   def apply
     promotion_code = PromotionCode.find_by(code: params[:promotion_code])
+    binding.pry
     if promotion_code.present && !promotion_code.used?
       apply_code(promotion_code)
     elsif promotion_code.present && promotion_code.used?
