@@ -8,7 +8,7 @@
             <h5 class="card-title">注文ID: <%= order.id %></h5>
             <p class="card-text"><strong>注文者:</strong> <%= order.username %></p>
             <p class="card-text"><strong>注文日:</strong> <%= order.created_at.strftime("%Y年%m月%d日 %H:%M") %></p>
-            <p class="card-text text-end"><strong>合計金額:</strong> <%= number_to_currency(order.cart.final_price, unit: "円") %></p>
+            <p class="card-text text-end"><strong>合計金額:</strong> <%= number_to_currency(order.final_price, unit: "円") %></p>
             <div class="text-center mt-3">
               <%= link_to '詳細を見る', order_path(order), class: 'btn btn-primary' %>
             </div>

@@ -12,11 +12,14 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @promotion_code = PromotionCode.find_by(code: params[:promotion_code])
     ActiveRecord::Base.transaction do
       @order = current_cart.orders.build(order_params)
+      @order.final_price = current_cart.final_price
       @order.save!
       create_order_detail(@order)
+
+      #チェックアウト後にプロモーションコードを使用済みにする
+      current_cart.promotion_code&.change_used_status
       cart_items_clear
     end
     # 購入するボタンが押されるとメールが送信できるようにする。
@@ -51,6 +54,9 @@ class OrdersController < ApplicationController
   # カートの中身を全て削除するためのメソッド
   def cart_items_clear
     current_cart.cart_items.destroy_all
+    current_cart.update!(
+      discount_amount: 0
+    )
   end
 
   # メールを送信する機能

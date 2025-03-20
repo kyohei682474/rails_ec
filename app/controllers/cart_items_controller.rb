@@ -28,7 +28,6 @@ class CartItemsController < ApplicationController
       redirect_to item_path(@cart_item.item_id), notice: t('cart_items.added')
     else
       @cart_item.increment(:quantity, params.permit(:quantity)[:quantity].to_i)
-      
       @cart_item.save
       @cart.update_total_price
       @cart.save 

@@ -4,6 +4,7 @@ class Order < ApplicationRecord
   has_many :order_details, dependent: :destroy
   belongs_to :cart
   
+  validates :final_price, presence: true
 
 
   def total_price

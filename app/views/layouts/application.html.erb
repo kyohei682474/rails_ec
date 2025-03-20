@@ -19,12 +19,18 @@
               <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!"><%= t('layouts.application.Home') %></a></li>
               <li class="nav-item"><a class="nav-link" href="#!"><%= t('layouts.application.About') %></a></li>
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><%= t('layouts.application.Shop') %></a>
+                <%= link_to t('layouts.application.Shop'), '#', class: 'nav-link dropdown-toggle', id: 'navbarDropdownMenu', role: 'button', data: { 'bs-toggle' => 'dropdown' }, aria: { expanded: 'false' } %>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="#!"><%= t('layouts.application.All_Products') %></a></li>
+                  <li>
+                    <%= link_to t('layouts.application.All_Products'), root_path, class: 'dropdown-item' %>
+                  </li>
                   <li><hr class="dropdown-divider"/></li>
-                  <li><a class="dropdown-item" href="#!"><%= t('layouts.application.Popular_Items') %></a></li>
-                  <li><a class="dropdown-item" href="#!"><%= t('layouts.application.New_Arrival') %></a></li>
+                  <li>
+                    <%= link_to t('layouts.application.Popular_Items'), root_path, class: 'dropdown-item' %>
+                  </li>
+                  <li>
+                    <%= link_to t('layouts.application.New_Arrival'), root_path, class: 'dropdown-item' %>
+                  </li>
                 </ul>
               </li>
             </ul>
@@ -33,13 +39,9 @@
                 <i class="bi-cart-fill me-1"></i>
                 <%= t('layouts.application.Cart') %>
               <% end %>
-              <%# <button class="btn btn-outline-dark" type="submit">
-                < class="bi-cart-fill me-1"></i>s
-                <%= t('layouts.application.Cart') %>
-              <%# <span class="badge bg-dark text-white ms-1 rounded-pill">0</span> %>
-              <%# </button>  %>
             </form>
           </div>
+          
         </div>
       </nav>
       <div class= "container">

@@ -7,15 +7,18 @@ class Cart < ApplicationRecord
   attribute :total_price, :integer, default: 0
 
   before_save :update_total_price
-  
+  def total
+    @total = cart_items.inject(0) { |sum, cart_item| sum + cart_item.line_total }
+  end 
+
   def update_total_price
     self.total_price = cart_items.sum{ |cart_item| cart_item.item.price * cart_item.quantity }
   end
   # 最終的な金額を定義
   def final_price
-    total_price - discount_amount
-    if total_price - discount_amount  > 0
-      total_price - discount_amount
+    self.total - discount_amount
+    if self.total - discount_amount  > 0
+      self.total - discount_amount
     else
       0
     end
