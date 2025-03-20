@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     collection do
       post :apply
     end
-  end 
+  end
 
   namespace :admin do
     resources :items, only: %i[index create show destroy update new edit]

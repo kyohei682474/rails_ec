@@ -3,7 +3,7 @@
 class CartItemsController < ApplicationController
   before_action :set_cart_item, only: %i[increase destroy]
   before_action :current_cart
-  
+
   def index
     # カート内アイテムを全て表示する
     @cart_items = @current_cart.cart_items.includes(:item)
@@ -25,13 +25,13 @@ class CartItemsController < ApplicationController
       @cart_item.increment(:quantity, params.permit(:quantity)[:quantity].to_i)
       @cart_item.save
       @cart.update_total_price
-      @cart.save 
+      @cart.save
       redirect_to item_path(@cart_item.item_id), notice: t('cart_items.added')
     else
       @cart_item.increment(:quantity, params.permit(:quantity)[:quantity].to_i)
       @cart_item.save
       @cart.update_total_price
-      @cart.save 
+      @cart.save
       redirect_to item_path(@cart_item.item_id), notice: t('cart_items.updated')
     end
   end
@@ -57,13 +57,11 @@ class CartItemsController < ApplicationController
       # cart_itemの商品の数が１つ増える。
       cart_item.increment(:quantity, 1)
       cart_item.save
-      current_cart.update_total_price
-      current_cart.save 
     else
       # 初めてカートに商品を入れた時
       current_cart.cart_items.build(item_id: item_id).save
-      current_cart.update_total_price
-      current_cart.save
     end
+    current_cart.update_total_price
+    current_cart.save
   end
 end

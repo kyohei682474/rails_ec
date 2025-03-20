@@ -24,7 +24,10 @@ ja:
     order_failed: "購入に失敗しました"
   order_mailer:
     thank_you_subject: "ご購入ありがとうございます"    
-
+  flash:
+    promotion_codes:
+      already_used: "このプロモーションコードはすでに使用されています。"
+      invalid: "無効なプロモーションコードです。"
 
   activerecord:
     models:

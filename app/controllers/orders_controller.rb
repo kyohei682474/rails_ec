@@ -18,7 +18,7 @@ class OrdersController < ApplicationController
       @order.save!
       create_order_detail(@order)
 
-      #チェックアウト後にプロモーションコードを使用済みにする
+      # チェックアウト後にプロモーションコードを使用済みにする
       current_cart.promotion_code&.change_used_status
       cart_items_clear
     end

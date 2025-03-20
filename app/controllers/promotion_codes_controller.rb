@@ -1,27 +1,28 @@
+# frozen_string_literal: true
+
 class PromotionCodesController < ApplicationController
   before_action :current_cart
   def apply
     @promotion_code = PromotionCode.find_by(code: params[:promotion_code])
     if @promotion_code.present? && !@promotion_code.used?
       apply_code(@promotion_code)
-      session[:applied_promotion_code] = @promotion_code.code #セッションにpromotion_code.codeを保存
+      session[:applied_promotion_code] = @promotion_code.code # セッションにpromotion_code.codeを保存
     elsif @promotion_code.present? && @promotion_code.used?
-     flash[:alert] = "このプロモーションコードはすでに使用されています。"
+      flash[:alert] = t.call('flash.promotion_code.used')
     else
-     flash[:alert] = "無効なプロモーションコードです。"
+      flash[:alert] = t.call('flash.promotion_code.not_found')
     end
 
     redirect_to cart_items_path
-      
   end
 
-  private 
+  private
 
   def apply_code(promotion_code)
-    #プロモーションコードが適応された時のdiscount_amount
+    # プロモーションコードが適応された時のdiscount_amount
     current_cart.update!(
       discount_amount: promotion_code.discount_amount,
-      total_price: current_cart.cart_items.sum {|cart_item| cart_item.item.price * cart_item.quantity }
-    ) 
+      total_price: current_cart.cart_items.sum { |cart_item| cart_item.item.price * cart_item.quantity }
+    )
   end
 end

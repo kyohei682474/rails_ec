@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class AddDiscountAmountAndTotalPriceToCarts < ActiveRecord::Migration[7.0]
-  def change
-    add_column :carts, :discount_amount, :integer, default: 0, null: false 
-    add_column :carts, :total_price, :integer, default: 0, null: false
+  change_table :carts, bulk: true do |t|
+    t.integer :discount_amount, default: 0, null: false
+    t.integer :promotion_code_id
   end
 end

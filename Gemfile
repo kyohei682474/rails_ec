@@ -50,10 +50,10 @@ gem 'bootsnap', require: false
 gem 'nokogiri', '~> 1.18.0'
 # Use Sass to process CSS
 # gem "sassc-rails"s
+gem 'concurrent-ruby', '1.3.4'
 gem 'image_processing', '~> 1.2'
 gem 'mini_magick', '~> 4.8'
 gem 'sendgrid-ruby'
-gem 'concurrent-ruby', '1.3.4'
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
@@ -67,7 +67,6 @@ end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
-  gem 'concurrent-ruby', '1.3.4'
   gem 'htmlbeautifier'
   gem 'letter_opener_web'
   gem 'pry-byebug'
