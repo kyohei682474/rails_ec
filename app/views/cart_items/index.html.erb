@@ -168,16 +168,14 @@
                         </div>
                       </div>
                       <span class="text-body-secondary"><%= cart_item.item.price %>円</span>
-                    </li>
-                  
-                  
+                    </li> 
                   <% end %>
                   <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
                     <div class="text-success">
-                      <h6 class="my-0"><%= current_cart.discount_amount %></h6>
+                      <h6 class="my-0"><%=  current_cart.promotion_code&.code || '-'  %></h6>
                       <small>EXAMPLECODE</small>
                     </div>
-                    <span class="text-success">−<%=current_cart.discount_amount %></span>
+                    <span class="text-success">−<%=current_cart.discount_amount if current_cart.promotion_code  %></span>
                   </li>
                   <li class="list-group-item d-flex justify-content-between">
                     <span>合計金額</span>
@@ -185,14 +183,26 @@
                   </li>
                 </ul>
                 <%= form_with url: apply_promotion_codes_path, method: :post, local: true do |form|  %>  
-                <form class="card p-2">
-                  <div class="input-group">
-                    <%= form.text_field :promotion_code, class: "form-controll", placeholder: "Promo code", required: true %>
-                    <%= form.submit "適用", class: "btn btn-secondary" %>
-                  </div>
-                </form>
+                  <form class="card p-2">
+                    <div class="input-group">
+                      <%= form.text_field :promotion_code, class: "form-controll", placeholder: "Promo code", required: true %>
+                      <%= form.submit "適用", class: "btn btn-secondary" %>
+                    </div>
+                  </form>
                 <% end %>
               </div>
+              <% if flash[:notice] %>
+                <div class="alert alert-success mt-2">
+                  <div class="text-success">
+                    <h6 class="my-0">Promo code</h6>
+                    <small><%= flash[:notice] %></small>
+                  </div>
+                </div>
+              <% elsif flash[:alert] %>
+                <div class="alert alert-danger mt-2">
+                  <%= flash[:alert] %>
+                </div>
+              <% end %>
               <div class="col-md-7 col-lg-8">
                 <h4 class="mb-3">Billing address</h4>
                 <%= form_with model: @order, local: true, class: "needs-validation" do |form| %>

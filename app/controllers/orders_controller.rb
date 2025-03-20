@@ -51,7 +51,6 @@ class OrdersController < ApplicationController
   # カートの中身を全て削除するためのメソッド
   def cart_items_clear
     current_cart.cart_items.destroy_all
-    
   end
 
   # メールを送信する機能
