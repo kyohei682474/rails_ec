@@ -173,7 +173,7 @@
                   <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
                     <div class="text-success">
                       <h6 class="my-0">
-                        <%= current_cart.promotion_code&.used? ? '-' : session[:applied_promotion_code].presence || '-' %>
+                        <%= current_cart.promotion_code&.used? ? '' : session[:applied_promotion_code].presence || '' %>
                       </h6>
                       <small>割引額</small>
                     </div>

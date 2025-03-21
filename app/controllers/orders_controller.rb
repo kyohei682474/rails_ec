@@ -20,7 +20,8 @@ class OrdersController < ApplicationController
 
       # チェックアウト後にプロモーションコードを使用済みにする
       current_cart.promotion_code&.change_used_status
-      binding.pry
+      current_cart.update!(discount_amount: 0, promotion_code_id: nil)
+      session.delete(:applied_promotion_code)
       cart_items_clear
     end
     # 購入するボタンが押されるとメールが送信できるようにする。
@@ -55,9 +56,6 @@ class OrdersController < ApplicationController
   # カートの中身を全て削除するためのメソッド
   def cart_items_clear
     current_cart.cart_items.destroy_all
-    current_cart.update!(
-      discount_amount: 0
-    )
   end
 
   # メールを送信する機能

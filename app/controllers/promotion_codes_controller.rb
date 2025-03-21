@@ -4,6 +4,7 @@ class PromotionCodesController < ApplicationController
   before_action :current_cart
   def apply
     @promotion_code = PromotionCode.find_by(code: params[:promotion_code])
+
     if @promotion_code.present? && !@promotion_code.used?
       apply_code(@promotion_code)
       session[:applied_promotion_code] = @promotion_code.code # セッションにpromotion_code.codeを保存
@@ -12,7 +13,6 @@ class PromotionCodesController < ApplicationController
     else
       flash[:alert] = t('flash.promotion_codes.invalid')
     end
-
     redirect_to cart_items_path
   end
 
