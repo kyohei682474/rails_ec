@@ -168,7 +168,7 @@
                         </div>
                       </div>
                       <span class="text-body-secondary"><%= cart_item.item.price %>円</span>
-                    </li> 
+                    </li>
                   <% end %>
                   <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
                     <div class="text-success">
@@ -184,11 +184,11 @@
                     <strong><%= current_cart.final_price %>円</strong>
                   </li>
                 </ul>
-                <%= form_with url: apply_promotion_codes_path, method: :post, local: true do |form|  %>  
-                    <div class="input-group">
-                      <%= form.text_field :promotion_code, class: "form-control", placeholder: "Promo code", required: true %>
-                      <%= form.submit "適用", class: "btn btn-secondary" %>
-                    </div>
+                <%= form_with url: apply_promotion_codes_path, method: :post, local: true do |form|  %>
+                  <div class="input-group">
+                    <%= form.text_field :promotion_code, class: "form-control", placeholder: "Promo code", required: true %>
+                    <%= form.submit "適用", class: "btn btn-secondary" %>
+                  </div>
                 <% end %>
               </div>
               <% if flash[:notice] %>
