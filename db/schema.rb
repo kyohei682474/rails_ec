@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_03_20_025728) do
+ActiveRecord::Schema[7.0].define(version: 2025_03_21_033316) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -57,6 +57,8 @@ ActiveRecord::Schema[7.0].define(version: 2025_03_20_025728) do
     t.datetime "updated_at", null: false
     t.integer "discount_amount", default: 0, null: false
     t.integer "total_price", default: 0, null: false
+    t.integer "promotion_code_id"
+    t.index ["promotion_code_id"], name: "index_carts_on_promotion_code_id"
   end
 
   create_table "items", force: :cascade do |t|

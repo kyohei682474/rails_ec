@@ -20,6 +20,7 @@ class OrdersController < ApplicationController
 
       # チェックアウト後にプロモーションコードを使用済みにする
       current_cart.promotion_code&.change_used_status
+      binding.pry
       cart_items_clear
     end
     # 購入するボタンが押されるとメールが送信できるようにする。

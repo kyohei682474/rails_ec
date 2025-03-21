@@ -172,10 +172,12 @@
                   <% end %>
                   <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
                     <div class="text-success">
-                      <h6 class="my-0"><%= session[:applied_promotion_code] || '-' %></h6>
+                      <h6 class="my-0">
+                        <%= current_cart.promotion_code&.used? ? '-' : session[:applied_promotion_code].presence || '-' %>
+                      </h6>
                       <small>割引額</small>
                     </div>
-                    <span class="text-success"><%= current_cart.discount_amount %></span>
+                    <span class="text-success"><%= current_cart.discount_amount.to_s.presence || '0' %></span>
                   </li>
                   <li class="list-group-item d-flex justify-content-between">
                     <span>合計金額</span>
@@ -183,12 +185,10 @@
                   </li>
                 </ul>
                 <%= form_with url: apply_promotion_codes_path, method: :post, local: true do |form|  %>  
-                  <form class="card p-2">
                     <div class="input-group">
-                      <%= form.text_field :promotion_code, class: "form-controll", placeholder: "Promo code", required: true %>
+                      <%= form.text_field :promotion_code, class: "form-control", placeholder: "Promo code", required: true %>
                       <%= form.submit "適用", class: "btn btn-secondary" %>
                     </div>
-                  </form>
                 <% end %>
               </div>
               <% if flash[:notice] %>

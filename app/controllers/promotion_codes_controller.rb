@@ -21,6 +21,7 @@ class PromotionCodesController < ApplicationController
   def apply_code(promotion_code)
     # プロモーションコードが適応された時のdiscount_amount
     current_cart.update!(
+      promotion_code_id: promotion_code.id,
       discount_amount: promotion_code.discount_amount,
       total_price: current_cart.cart_items.sum { |cart_item| cart_item.item.price * cart_item.quantity }
     )
