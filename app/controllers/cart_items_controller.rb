@@ -7,7 +7,7 @@ class CartItemsController < ApplicationController
   def index
     # カート内アイテムを全て表示する
     @cart_items = @current_cart.cart_items.includes(:item)
-    @total = @cart_items.inject(0) { |sum, cart_item| sum + cart_item.line_total }
+    @total = total
     # 住所やクレジット情報を記入するための@order
     @order = Order.new
   end
